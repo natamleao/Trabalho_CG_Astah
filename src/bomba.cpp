@@ -38,14 +38,14 @@ void Bomba::bomba(){
     glEnd(); // Finaliza o desenho do polígono
 }
 
-bool Bomba::verificaColisaoBombaAsteroide(float pontos[2]) {
+bool Bomba::verificaColisaoBombaAsteroide(float pontos[2]){
     float distanciaAteOrigem = sqrt(pow(pontos[0], 2) + pow(pontos[1], 2)); // Calcula a distância até a origem
     if (distanciaAteOrigem <= getRaioBomba())
         return true; // Verifica se houve colisão com o asteroide
     return false; // Retorna falso se não houve colisão
 }
 
-void Bomba::aumentaRaioBomba(float pontos[2]) {
+void Bomba::aumentaRaioBomba(float pontos[2]){
     bomba(); // Desenha a bomba
     static Asteroide asteroide;
     asteroide.asteroide(); // Desenha o asteroide
@@ -61,7 +61,7 @@ void Bomba::aumentaRaioBomba(float pontos[2]) {
     glutPostRedisplay(); // Solicita a redisplay para animação contínua
 }
 
-void Bomba::diminuiRaioBomba() {
+void Bomba::diminuiRaioBomba(){
     bomba(); // Desenha a bomba
     static Asteroide asteroide;
     asteroide.asteroide(); // Desenha o asteroide

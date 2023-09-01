@@ -5,7 +5,7 @@
 
 #include "../include/asteroide.hpp"
 
-class Bomba {
+class Bomba{
     private:
         float raioBomba; // Raio inicial do círculo
         float taxaAumentoRaioBomba; // Taxa de aumento do raio
