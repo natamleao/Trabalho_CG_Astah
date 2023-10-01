@@ -26,22 +26,20 @@ void redimensionaJanela(int largura, int altura){
     glutPostRedisplay();               // Solicita a redisplay da cena
 }
 
-void aumentarRaio() {
+void aumentarRaio(){
     const float incremento = 0.011;  // Valor de incremento para o raio
     const float limiteRaio = 40.0;   // Valor máximo para o raio
 
-    for (auto it = bombas.begin(); it != bombas.end();) {
+    for (auto it = bombas.begin(); it != bombas.end();){
         Bomba& bomba = *it; // Obtem uma referência para o objeto Bomba apontado por 'it'
 
-        if (!bomba.getDiminuindo() && bomba.getRaio() < limiteRaio) {
+        if(!bomba.getDiminuindo() && bomba.getRaio() < limiteRaio)
             bomba.setRaio(bomba.getRaio() + incremento); // Aumenta o raio da bomba atual somando o valor de incremento ao raio atual
-        } 
-        else if (!bomba.getDiminuindo() && bomba.getRaio() >= limiteRaio) {
+        else if(!bomba.getDiminuindo() && bomba.getRaio() >= limiteRaio)
             bomba.setDiminuindo(true); // Inicia a diminuição da bomba
-        } 
-        else if (bomba.getDiminuindo()) {
+        else if(bomba.getDiminuindo()){
             bomba.setRaio(bomba.getRaio() - incremento); // Reduza o raio da bomba até que ele seja zero
-            if (bomba.getRaio() <= 0.0) {
+            if(bomba.getRaio() <= 0.0){
                 it = bombas.erase(it); // Se a bomba atingiu o raio mínimo, remova-a do vetor de bombas
                 continue;
             }
@@ -56,7 +54,7 @@ void mouseClique(int button, int state, int x, int y){
     float coord_x = x;                // Calcula a coordenada X do clique do mouse
     float coord_y = janelaAltura - y; // Calcula a coordenada Y do clique do mouse invertendo a posição Y em relação à altura da janela
 
-    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+    if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN){
         Bomba novaBomba(coord_x, coord_y, raioInicial);
         bombas.push_back(novaBomba);
         raioInicial = 0.0;          // Reseta o raio inicial
@@ -75,11 +73,11 @@ void desenha(){
     glMatrixMode(GL_MODELVIEW);   // Define a matriz de modelagem
     glLoadIdentity();
 
-    for (Estrela& estrela : estrelas){
+    for(Estrela& estrela : estrelas){
         estrela.desenha(); // Desenha as estrelas no cenário
     }
 
-    for (Bomba& bomba : bombas) {
+    for(Bomba& bomba : bombas){
         glPushMatrix();
         glTranslatef(bomba.getCentroX(), bomba.getCentroY(), 0.0); // Translada a bomba
         bomba.desenha(); // Desenha a bomba
@@ -104,7 +102,7 @@ int main(int argc, char** argv){
 
     inicio(); // Executa a função de inicialização
 
-    for (int i = 0; i < 50; i++){
+    for(int i = 0; i < 50; i++){
         estrelas.push_back(Estrela(5.0, janelaLargura, janelaAltura)); // Adiciona estrelas ao vetor
     }
 

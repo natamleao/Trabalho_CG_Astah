@@ -48,7 +48,7 @@ void Bomba::desenha(){
 
             glVertex2f(x, y); // Adiciona um vértice ao polígono (círculo)
         }
-        glEnd(); // Finaliza o desenho do polígono (círculo)
+    glEnd(); // Finaliza o desenho do polígono (círculo)
 }
 
 /*****************************************************************************************************************/
