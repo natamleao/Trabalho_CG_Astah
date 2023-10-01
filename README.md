@@ -12,21 +12,19 @@ Neste jogo, os jogadores devem defender sua cidade dos mísseis inimigos. Use o 
 O jogo utiliza a biblioteca OpenGL para renderizar os gráficos, proporcionando uma experiência visual envolvente.
 
 > [!Warning]
-> ## ⚠️ Aviso
+> ## Aviso
 > Este jogo é apenas uma demonstração acadêmica e não deve ser utilizado para fins comerciais. Os gráficos e a jogabilidade são simplificados e não representam um produto final.
 
-## Como Jogar
-
-⚠️ **Importante:** Este jogo é destinado apenas para fins educacionais e de aprendizado. Não é adequado para uso comercial ou distribuição.
-
-1. Clone este repositório em sua máquina local.
-2. Certifique-se de ter o GCC (Compilador C++) instalado em sua máquina.
-3. Abra um terminal e navegue até o diretório do projeto.
-4. Para compilar o jogo, execute o comando `make`. Isso compilará o código-fonte e criará o executável.
-5. Para iniciar o jogo, execute o comando `make run`. O jogo será iniciado.
-6. No jogo, você deve defender sua cidade dos mísseis inimigos. Use o mouse para mirar e clique para disparar mísseis contra os inimigos.
-7. Você ganha pontos ao destruir os mísseis inimigos antes que eles atinjam sua cidade.
-8. Para encerrar o jogo, simplesmente feche a janela do jogo ou pressione `Ctrl + C` no terminal.
+> [!Important]
+> ## Como Jogar
+> 1. Clone este repositório em sua máquina local.
+> 2. Certifique-se de ter o GCC (Compilador C++) instalado em sua máquina.
+> 3. Abra um terminal e navegue até o diretório do projeto.
+> 4. Para compilar o jogo, execute o comando `make`. Isso compilará o código-fonte e criará o executável.
+> 5. Para iniciar o jogo, execute o comando `make run`. O jogo será iniciado.
+> 6. No jogo, você deve defender sua cidade dos mísseis inimigos. Use o mouse para mirar e clique para disparar mísseis contra os inimigos.
+> 7. Você ganha pontos ao destruir os mísseis inimigos antes que eles atinjam sua cidade.
+> 8. Para encerrar o jogo, simplesmente feche a janela do jogo ou pressione `Ctrl + C` no terminal.
 
 ## Controles
 
