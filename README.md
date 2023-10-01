@@ -13,7 +13,7 @@ Neste jogo, os jogadores devem defender sua cidade dos mísseis inimigos. Use o 
 O jogo utiliza a biblioteca OpenGL para renderizar os gráficos, proporcionando uma experiência visual envolvente.
 
 > [!WARNING]
-> **Aviso Importante**: Este jogo é apenas uma demonstração acadêmica e não deve ser utilizado para fins comerciais. Os gráficos e a jogabilidade são simplificados e não representam um produto final.
+> Este jogo é apenas uma demonstração acadêmica e não deve ser utilizado para fins comerciais. Os gráficos e a jogabilidade são simplificados e não representam um produto final.
 
 > [!IMPORTANT]
 > ## Como Jogar
