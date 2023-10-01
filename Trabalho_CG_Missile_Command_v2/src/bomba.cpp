@@ -34,12 +34,14 @@ float Bomba::getCentroY(){return this->centroY;}        // Retorna a coordenada 
 bool Bomba::getDiminuindo() const {return diminuindo;}  // Retorna se a bomba está diminuindo (true ou false)
 
 void Bomba::desenha(){
-    glBegin(GL_POLYGON); // Inicia o desenho de um polígono (círculo)
+    glBegin(GL_POLYGON);      // Inicia o desenho de um polígono (círculo)
+    glColor3f(1.0, 0.0, 0.0); // Define a cor para o centro
+    glVertex2f(0.0, 0.0);     // O centro do círculo
     for (int i = 0; i <= 400; i++){
         float theta = 2.0 * M_PI * static_cast<float>(i) / 400; // Calcula o ângulo theta
         float x = getRaio() * cos(theta);                       // Calcula a coordenada x do ponto no círculo
         float y = getRaio() * sin(theta);                       // Calcula a coordenada y do ponto no círculo
-        glColor3f(1.0, 69.0 / 255, 0.0);                        // Define a cor do círculo (laranja)
+        glColor3f(1.0, 1.0, 0.0);                        // Define a cor do círculo (laranja)
         glVertex2f(x, y);                                       // Adiciona um vértice ao polígono (círculo)
     }
     glEnd(); // Finaliza o desenho do polígono (círculo)
