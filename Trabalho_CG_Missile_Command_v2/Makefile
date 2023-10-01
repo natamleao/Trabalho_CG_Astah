@@ -3,7 +3,7 @@ BIN = ./bin
 INCLUDE = ./include
 OBJ = ./obj
 SRC = ./src
-FLAGS = -Wall -Werror  
+FLAGS = -Wall -Werror
 FLAGGLUT = -lGL -lGLU -lglut
 
 all: \
