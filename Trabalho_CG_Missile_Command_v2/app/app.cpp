@@ -7,6 +7,8 @@
 
 int janelaLargura = 600;       // Largura inicial da janela
 int janelaAltura = 600;        // Altura inicial da janela
+float raioAtual = 0.0;         // Raio atual da bomba
+
 std::vector<Estrela> estrelas; // Vetor para armazenar objetos da classe Estrela
 Bomba bomba;                   // Objeto da classe Bomba
 Lua lua;                       // Objeto da classe Lua
@@ -24,14 +26,29 @@ void redimensionaJanela(int largura, int altura){
     glutPostRedisplay();               // Solicita a redisplay da cena
 }
 
+void aumentarRaio() {
+    const float incremento = 0.0101; // Valor de incremento para o raio
+    const float limiteRaio = 50.0;  // Valor máximo para o raio
+
+    if (raioAtual < limiteRaio) {
+        raioAtual += incremento;  // Aumenta o raio atual
+        bomba.setRaio(raioAtual); // Define o novo raio da bomba
+
+        glutPostRedisplay(); // Solicita a redisplay da cena
+    } 
+    else {
+        glutIdleFunc(nullptr); // Para a animação quando o raio atingir 50.0
+    }
+}
+
 void mouseClique(int button, int state, int x, int y){
     float coord_x = x;
     float coord_y = janelaAltura - y;
 
-    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN){
-        bomba = Bomba();                    // Cria um novo objeto Bomba
-        bomba.setPosicao(coord_x, coord_y); // Define a posição da bomba
-        bomba.setRaio(50.0);                // Define o raio da bomba
+    if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
+        bomba.setPosicao(coord_x, coord_y);
+        raioAtual = 0.0;            // Reinicia o raio atual
+        glutIdleFunc(aumentarRaio); // Chama a função de animação
     }
 
     glutPostRedisplay(); // Solicita a redisplay da cena
@@ -43,7 +60,7 @@ void desenha(){
     glMatrixMode(GL_PROJECTION);  // Define a matriz de projeção
     glLoadIdentity();
     glOrtho(0, janelaLargura - 1, 0, janelaAltura - 1, -1, 1); // Define a projeção ortográfica
-    glMatrixMode(GL_MODELVIEW); // Define a matriz de modelagem
+    glMatrixMode(GL_MODELVIEW);   // Define a matriz de modelagem
     glLoadIdentity();
 
     for (Estrela& estrela : estrelas){
