@@ -8,11 +8,10 @@
 #include <GL/glut.h>            // Inclui a biblioteca GLUT
 #include <cmath>                // Inclui a biblioteca para funções matemáticas
 
-/*********************************************** PRIVATE INTERFACE ***********************************************/
-
 Bomba::Bomba(float x, float y, float raio){
-    setRaio(raio);     // Define o raio inicial da bomba
-    setPosicao(x, y);  // Define a posição inicial da bomba
+    setRaio(raio);            // Define o raio inicial da bomba
+    setPosicao(x, y);         // Define a posição inicial da bomba
+    this->diminuindo = false; // Inicialmente, a bomba não está diminuindo
 }
 
 void Bomba::setPosicao(float x, float y){
@@ -21,13 +20,18 @@ void Bomba::setPosicao(float x, float y){
 }
 
 void Bomba::setRaio(float raio){
-    if (raio >= 0.0) // Garante que o raio seja sempre não negativo
+    if (raio >= 0.0)       // Garante que o raio seja sempre não negativo
         this->raio = raio; // Define o raio da bomba
 }
 
-float Bomba::getRaio(){return this->raio;} // Retorna o raio da bomba
-float Bomba::getCentroX(){return this->centroX;} // Retorna a coordenada x do centro da bomba
-float Bomba::getCentroY(){return this->centroY;} // Retorna a coordenada y do centro da bomba
+void Bomba::setDiminuindo(bool value) {
+    this->diminuindo = value; // Define se a bomba está diminuindo (true ou false)
+}
+
+float Bomba::getRaio(){return this->raio;}              // Retorna o raio da bomba
+float Bomba::getCentroX(){return this->centroX;}        // Retorna a coordenada x do centro da bomba
+float Bomba::getCentroY(){return this->centroY;}        // Retorna a coordenada y do centro da bomba
+bool Bomba::getDiminuindo() const {return diminuindo;}  // Retorna se a bomba está diminuindo (true ou false)
 
 void Bomba::desenha(){
     glBegin(GL_POLYGON); // Inicia o desenho de um polígono (círculo)

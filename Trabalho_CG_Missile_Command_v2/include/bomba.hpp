@@ -20,7 +20,9 @@ class Bomba{
         float raio;      /**< O raio da bomba. */
         float centroX;   /**< A coordenada X do centro da bomba. */
         float centroY;   /**< A coordenada Y do centro da bomba. */
+        bool diminuindo; /**< Flag que determinna o estado da bomba*/
     public:
+    
         /**
          * @brief Construtor da classe Bomba.
          * 
@@ -44,6 +46,13 @@ class Bomba{
         void setRaio(float raio = 0.0);
 
         /**
+         * @brief Define se a bomba está diminuindo.
+         * 
+         * @param value Um valor booleano que indica se a bomba está diminuindo.
+         */
+        void setDiminuindo(bool value);
+
+        /**
          * @brief Obtém o raio da bomba.
          * 
          * @return O raio da bomba.
@@ -63,6 +72,13 @@ class Bomba{
          * @return A coordenada Y do centro da bomba.
          */
         float getCentroY();
+
+        /**
+         * @brief Verifica se a bomba está diminuindo.
+         * 
+         * @return true se a bomba está diminuindo, false caso contrário.
+         */
+        bool getDiminuindo() const;
 
         /**
          * @brief Desenha a bomba no contexto gráfico.

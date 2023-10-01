@@ -21,6 +21,7 @@ class Estrela{
         float tamanho;                 /**< O tamanho da estrela. */
         std::vector<float> vetorTranslacao; /**< O vetor de translação para posicionar a estrela. */
     public:
+    
         /**
          * @brief Construtor da classe Estrela.
          * 

@@ -21,6 +21,7 @@ class Lua{
         float centroX;   /**< A coordenada X do centro da lua. */
         float centroY;   /**< A coordenada Y do centro da lua. */
     public:
+    
         /**
          * @brief Construtor da classe Lua.
          * 

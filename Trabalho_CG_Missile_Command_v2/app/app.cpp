@@ -26,27 +26,40 @@ void redimensionaJanela(int largura, int altura){
     glutPostRedisplay();               // Solicita a redisplay da cena
 }
 
-void aumentarRaio(){
-    const float incremento = 0.0101; // Valor de incremento para o raio
-    const float limiteRaio = 50.0;   // Valor máximo para o raio
+void aumentarRaio() {
+    const float incremento = 0.011;  // Valor de incremento para o raio
+    const float limiteRaio = 40.0;   // Valor máximo para o raio
 
-    for (Bomba& bomba : bombas) {
-        if (bomba.getRaio() < limiteRaio) {
-            bomba.setRaio(bomba.getRaio() + incremento);
+    for (auto it = bombas.begin(); it != bombas.end();) {
+        Bomba& bomba = *it; // Obtem uma referência para o objeto Bomba apontado por 'it'
+
+        if (!bomba.getDiminuindo() && bomba.getRaio() < limiteRaio) {
+            bomba.setRaio(bomba.getRaio() + incremento); // Aumenta o raio da bomba atual somando o valor de incremento ao raio atual
+        } 
+        else if (!bomba.getDiminuindo() && bomba.getRaio() >= limiteRaio) {
+            bomba.setDiminuindo(true); // Inicia a diminuição da bomba
+        } 
+        else if (bomba.getDiminuindo()) {
+            bomba.setRaio(bomba.getRaio() - incremento); // Reduza o raio da bomba até que ele seja zero
+            if (bomba.getRaio() <= 0.0) {
+                it = bombas.erase(it); // Se a bomba atingiu o raio mínimo, remova-a do vetor de bombas
+                continue;
+            }
         }
+        ++it;
     }
 
     glutPostRedisplay();
 }
 
 void mouseClique(int button, int state, int x, int y){
-    float coord_x = x;
-    float coord_y = janelaAltura - y;
+    float coord_x = x;                // Calcula a coordenada X do clique do mouse
+    float coord_y = janelaAltura - y; // Calcula a coordenada Y do clique do mouse invertendo a posição Y em relação à altura da janela
 
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
         Bomba novaBomba(coord_x, coord_y, raioInicial);
         bombas.push_back(novaBomba);
-        raioInicial = 0.0; // Reseta o raio inicial
+        raioInicial = 0.0;          // Reseta o raio inicial
         glutIdleFunc(aumentarRaio); // Continua a animação
     }
 

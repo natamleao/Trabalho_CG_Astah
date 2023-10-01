@@ -4,16 +4,12 @@
 /*********************************************** PRIVATE INTERFACE ***********************************************/
 
 Estrela::Estrela(float tamanho, int largura, float altura) : tamanho(tamanho){
-    // Configuração do gerador de números aleatórios
     std::random_device rd;  // Inicializa o gerador de números aleatórios
     std::mt19937 gen(rd()); // Mersenne Twister 19937 como motor
-    // Gera um número aleatório para x no intervalo [2.0, largura - 2.0]
-    std::uniform_real_distribution<float> x_dist(2.0, static_cast<float>(largura - 2));
+    std::uniform_real_distribution<float> x_dist(2.0, static_cast<float>(largura - 2)); // Gera um número aleatório para x no intervalo [2.0, largura - 2.0]
     float x = x_dist(gen);
-    // Gera um número aleatório para y no intervalo [altura / 2 + 1, altura - 2.0]
-    std::uniform_real_distribution<float> y_dist(static_cast<float>(altura / 2 + 1), static_cast<float>(altura - 2));
+    std::uniform_real_distribution<float> y_dist(static_cast<float>(altura / 2 + 1), static_cast<float>(altura - 2)); // Gera um número aleatório para y no intervalo [altura / 2 + 1, altura - 2.0]
     float y = y_dist(gen);
-    // Cria o vetor de translação com os valores gerados
     this->vetorTranslacao = {x, y}; // Define o vetor de translação para a estrela
 }
 
@@ -21,7 +17,6 @@ void Estrela::desenha() {
     glColor3f(1.0, 215/255.0, 1.0); // Define a cor branca para a estrela (RGB)
     glPushMatrix();
     glTranslatef(vetorTranslacao[0], vetorTranslacao[1], 0.0); // Posiciona a estrela no vetor de translação
-    // Desenha uma estrela de cinco pontas
     glBegin(GL_TRIANGLES); // Inicia o desenho de triângulos (as pontas da estrela)
     for (int i = 0; i < 5; i++) {
         float angle1 = i * 2 * M_PI / 5;       // Calcula o ângulo para uma das pontas
