@@ -26,7 +26,7 @@ O jogo utiliza a biblioteca OpenGL para renderizar os gráficos, proporcionando 
 > 7. Você ganha pontos ao destruir os mísseis inimigos antes que eles atinjam sua cidade.
 > 8. Para encerrar o jogo, simplesmente feche a janela do jogo ou pressione `Ctrl + C` no terminal.
 
-## Controles
+## Controles 
 
 - Use o mouse para mirar e clicar para disparar mísseis.
 - Pressione `Ctrl + C` no terminal para encerrar o jogo.
