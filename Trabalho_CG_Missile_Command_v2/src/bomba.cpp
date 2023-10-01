@@ -4,9 +4,15 @@
 
 /*********************************************** PRIVATE INTERFACE ***********************************************/
 
-Bomba::Bomba() {
-    this->raio = 0.0;     // Define o raio inicial da bomba como 0.0
-    setPosicao(0.0, 0.0); // Define a posição inicial da bomba como (0.0, 0.0)
+#include "../include/bomba.hpp" // Inclui o cabeçalho para a classe Bomba
+#include <GL/glut.h>            // Inclui a biblioteca GLUT
+#include <cmath>                // Inclui a biblioteca para funções matemáticas
+
+/*********************************************** PRIVATE INTERFACE ***********************************************/
+
+Bomba::Bomba(float x, float y, float raio){
+    setRaio(raio);     // Define o raio inicial da bomba
+    setPosicao(x, y);  // Define a posição inicial da bomba
 }
 
 void Bomba::setPosicao(float x, float y){

@@ -26,7 +26,7 @@ class Bomba{
          * 
          * Cria um objeto Bomba com raio zero e posição inicial (0.0, 0.0).
          */
-        Bomba();
+        Bomba(float x=0.0, float y=0.0, float raio=0.0);
 
         /**
          * @brief Define a posição da bomba.

@@ -7,10 +7,10 @@
 
 int janelaLargura = 600;       // Largura inicial da janela
 int janelaAltura = 600;        // Altura inicial da janela
-float raioAtual = 0.0;         // Raio atual da bomba
+float raioInicial = 0.0;       // Raio inicial das bombas
 
 std::vector<Estrela> estrelas; // Vetor para armazenar objetos da classe Estrela
-Bomba bomba;                   // Objeto da classe Bomba
+std::vector<Bomba> bombas;     // Objetos da classe Bomba
 Lua lua;                       // Objeto da classe Lua
 
 void inicio(){
@@ -26,19 +26,17 @@ void redimensionaJanela(int largura, int altura){
     glutPostRedisplay();               // Solicita a redisplay da cena
 }
 
-void aumentarRaio() {
+void aumentarRaio(){
     const float incremento = 0.0101; // Valor de incremento para o raio
-    const float limiteRaio = 50.0;  // Valor máximo para o raio
+    const float limiteRaio = 50.0;   // Valor máximo para o raio
 
-    if (raioAtual < limiteRaio) {
-        raioAtual += incremento;  // Aumenta o raio atual
-        bomba.setRaio(raioAtual); // Define o novo raio da bomba
-
-        glutPostRedisplay(); // Solicita a redisplay da cena
-    } 
-    else {
-        glutIdleFunc(nullptr); // Para a animação quando o raio atingir 50.0
+    for (Bomba& bomba : bombas) {
+        if (bomba.getRaio() < limiteRaio) {
+            bomba.setRaio(bomba.getRaio() + incremento);
+        }
     }
+
+    glutPostRedisplay();
 }
 
 void mouseClique(int button, int state, int x, int y){
@@ -46,9 +44,10 @@ void mouseClique(int button, int state, int x, int y){
     float coord_y = janelaAltura - y;
 
     if (button == GLUT_LEFT_BUTTON && state == GLUT_DOWN) {
-        bomba.setPosicao(coord_x, coord_y);
-        raioAtual = 0.0;            // Reinicia o raio atual
-        glutIdleFunc(aumentarRaio); // Chama a função de animação
+        Bomba novaBomba(coord_x, coord_y, raioInicial);
+        bombas.push_back(novaBomba);
+        raioInicial = 0.0; // Reseta o raio inicial
+        glutIdleFunc(aumentarRaio); // Continua a animação
     }
 
     glutPostRedisplay(); // Solicita a redisplay da cena
@@ -67,10 +66,12 @@ void desenha(){
         estrela.desenha(); // Desenha as estrelas no cenário
     }
 
-    glPushMatrix();
+    for (Bomba& bomba : bombas) {
+        glPushMatrix();
         glTranslatef(bomba.getCentroX(), bomba.getCentroY(), 0.0); // Translada a bomba
         bomba.desenha(); // Desenha a bomba
-    glPopMatrix();
+        glPopMatrix();
+    }
 
     glPushMatrix();
         glTranslated((janelaLargura/2), (3*janelaAltura/4), 0.0); // Translada a lua
@@ -90,7 +91,7 @@ int main(int argc, char** argv){
 
     inicio(); // Executa a função de inicialização
 
-    for (int i = 0; i < 40; i++){
+    for (int i = 0; i < 50; i++){
         estrelas.push_back(Estrela(5.0, janelaLargura, janelaAltura)); // Adiciona estrelas ao vetor
     }
 
