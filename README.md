@@ -1,9 +1,8 @@
-<div align="justify">
-
 # Trabalho de Computação Gráfica: Jogo Missile Command em C++
 
-> [!NOTE]
-> Este projeto é um exemplo de jogo Missile Command desenvolvido como parte de um trabalho acadêmico na disciplina de Computação Gráfica. O jogo permite que os jogadores defendam sua cidade contra mísseis inimigos.
+<div align="justify">
+
+Este projeto é um exemplo de jogo Missile Command desenvolvido como parte de um trabalho acadêmico na disciplina de Computação Gráfica. O jogo permite que os jogadores defendam sua cidade contra mísseis inimigos.
 
 ## Funcionalidades Principais
 
@@ -13,10 +12,10 @@ Neste jogo, os jogadores devem defender sua cidade dos mísseis inimigos. Use o 
 ### 2. Gráficos com OpenGL
 O jogo utiliza a biblioteca OpenGL para renderizar os gráficos, proporcionando uma experiência visual envolvente.
 
-> [!Warning]
-> Este jogo é apenas uma demonstração acadêmica e não deve ser utilizado para fins comerciais. Os gráficos e a jogabilidade são simplificados e não representam um produto final.
+> [!WARNING]
+> **Aviso Importante**: Este jogo é apenas uma demonstração acadêmica e não deve ser utilizado para fins comerciais. Os gráficos e a jogabilidade são simplificados e não representam um produto final.
 
-> [!Important]
+> [!IMPORTANT]
 > ## Como Jogar
 > 1. Clone este repositório em sua máquina local.
 > 2. Certifique-se de ter o GCC (Compilador C++) instalado em sua máquina.
