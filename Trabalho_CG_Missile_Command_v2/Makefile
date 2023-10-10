@@ -3,7 +3,7 @@ BIN = ./bin
 INCLUDE = ./include
 OBJ = ./obj
 SRC = ./src
-FLAGS = -Wall -Werror
+FLAGS = -Wall -Werror  
 FLAGGLUT = -lGL -lGLU -lglut
 
 all: \
@@ -11,6 +11,7 @@ all: \
 	myapps
 
 libeb: \
+    $(OBJ)/asteroide.o \
 	$(OBJ)/bomba.o \
 	$(OBJ)/estrela.o \
 	$(OBJ)/lua.o
@@ -27,7 +28,7 @@ $(BIN)/%: $(APPS)/%.cpp
 
 run:
 	$(BIN)/app
-	
+
 clean:
 	rm -rf $(BIN)/* $(OBJ)/*
 

@@ -35,9 +35,9 @@ bool Bomba::getDiminuindo() const {return diminuindo;}  // Retorna se a bomba es
 
 void Bomba::desenha(){
     glBegin(GL_TRIANGLE_FAN); // Inicia o desenho de um polígono (triângulo)    
-        glColor3f(1.0, 0.0, 0.0); // Define a cor do centro do círculo (branco)
+        glColor3f(1.0, 0.0, 0.0); // Define a cor do centro do círculo
         glVertex2f(0.0, 0.0); // Define o ponto central do polígono
-        glColor3f(1.0, 1.0, 0.0); // Define a cor da borda do círculo (um tom de cinza)
+        glColor3f(1.0, 1.0, 0.0); // Define a cor da borda do círculo 
 
         int numSegments = 400; // Número de segmentos para suavizar a transição de cores
 
