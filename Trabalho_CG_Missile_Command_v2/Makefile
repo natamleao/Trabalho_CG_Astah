@@ -14,7 +14,9 @@ libeb: \
     $(OBJ)/asteroide.o \
 	$(OBJ)/bomba.o \
 	$(OBJ)/estrela.o \
-	$(OBJ)/lua.o
+	$(OBJ)/lua.o \
+	$(OBJ)/canhao.o \
+	$(OBJ)/torre.o
 
 myapps: \
 	cleanapp \

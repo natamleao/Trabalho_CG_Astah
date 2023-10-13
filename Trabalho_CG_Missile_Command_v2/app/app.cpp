@@ -2,6 +2,8 @@
 #include "../include/estrela.hpp"   // Inclui o cabeçalho para a classe Estrela
 #include "../include/bomba.hpp"     // Inclui o cabeçalho para a classe Bomba
 #include "../include/lua.hpp"       // Inclui o cabeçalho para a classe Lua
+#include "../include/canhao.hpp"    // Inclui o cabeçalho para a classe Canhao
+#include "../include/torre.hpp"     // Inclui o cabeçalho para a classe Torre
 #include <GL/glut.h>                // Inclui a biblioteca GLUT para gráficos
 #include <iostream>                 // Inclui a biblioteca para entrada/saída
 #include <vector>                   // Inclui a biblioteca para usar vetores
@@ -9,14 +11,18 @@
 #include <ctime>                    // Inclui a biblioteca para obter o tempo atual
 #include <cmath>                    // Inclui a biblioteca para funções matemáticas
 
-int larguraJanela = 600;            // Largura inicial da janela
-int alturaJanela = 600;             // Altura inicial da janela
-float raioInicialBomba = 0.0;       // Raio inicial das bombas
+int larguraJanela = 600;             // Largura inicial da janela
+int alturaJanela = 600;              // Altura inicial da janela
+float raioInicialBomba = 0.0;        // Raio inicial das bombas
+double mouseX = larguraJanela / 2;   // Posição inicial do mouse X
+double mouseY;                       // Posição inicial do mouse Y
 
 std::vector<Asteroide> asteroides;  // Vetor para armazenar asteroides
 std::vector<Estrela> estrelas;      // Vetor para armazenar objetos da classe Estrela
 std::vector<Bomba> bombas;          // Objetos da classe Bomba
 Lua lua;                            // Objeto da classe Lua
+Torre torre(30, 175, 0);            // Objeto da classe Torre com largura, altura e coordenada X do meio
+Canhao canhao(30, 175, larguraJanela / 2); // Objeto da classe Canhao com largura, altura e coordenada X do meio
 
 float centroCirculoX = larguraJanela / 2.0f;   // Centro do círculo no meio da largura da janela
 float centroCirculoY = alturaJanela / 2.0f;    // Centro do círculo no meio da altura da janela
@@ -38,7 +44,7 @@ void inicializacao() {
     glLoadIdentity();
 }
 
-void redimensionarJanela(int novaLargura, int novaAltura){
+void redimensionarJanela(int novaLargura, int novaAltura) {
     larguraJanela = novaLargura;           // Atualiza a largura da janela
     alturaJanela = novaAltura;             // Atualiza a altura da janela
     glViewport(0, 0, novaLargura, novaAltura); // Define a região de visualização
@@ -55,20 +61,20 @@ void redimensionarJanela(int novaLargura, int novaAltura){
     glutPostRedisplay();               // Solicita a redisplay da cena
 }
 
-void aumentarRaioBombas(){
+void aumentarRaioBombas() {
     const float incrementoRaio = 1.2;  // Valor de incremento para o raio
     const float limiteRaio = 40.0;     // Valor máximo para o raio
 
-    for (auto it = bombas.begin(); it != bombas.end();){
+    for (auto it = bombas.begin(); it != bombas.end();) {
         Bomba& bomba = *it; // Obtem uma referência para o objeto Bomba apontado por 'it'
 
-        if(!bomba.getDiminuindo() && bomba.getRaio() < limiteRaio)
+        if (!bomba.getDiminuindo() && bomba.getRaio() < limiteRaio)
             bomba.setRaio(bomba.getRaio() + incrementoRaio); // Aumenta o raio da bomba atual somando o valor de incremento ao raio atual
-        else if(!bomba.getDiminuindo() && bomba.getRaio() >= limiteRaio)
+        else if (!bomba.getDiminuindo() && bomba.getRaio() >= limiteRaio)
             bomba.setDiminuindo(true); // Inicia a diminuição da bomba
-        else if(bomba.getDiminuindo()){
+        else if (bomba.getDiminuindo()) {
             bomba.setRaio(bomba.getRaio() - incrementoRaio); // Reduza o raio da bomba até que ele seja zero
-            if(bomba.getRaio() <= 0.0){
+            if (bomba.getRaio() <= 0.0) {
                 it = bombas.erase(it); // Se a bomba atingiu o raio mínimo, remova-a do vetor de bombas
                 continue;
             }
@@ -79,12 +85,18 @@ void aumentarRaioBombas(){
     glutPostRedisplay();
 }
 
-void cliqueMouse(int botao, int estado, int x, int y){
+void mousePos(int x, int y) {
+    mouseX = x;
+    mouseY = glutGet(GLUT_WINDOW_HEIGHT) - y; // Inverta a coordenada y
+    glutPostRedisplay(); // Redesenha a janela
+}
+
+void cliqueMouse(int botao, int estado, int x, int y) {
     float coordenadaX = x;                // Calcula a coordenada X do clique do mouse
     float coordenadaY = alturaJanela - y; // Calcula a coordenada Y do clique do mouse invertendo a posição Y em relação à altura da janela
 
-    if(botao == GLUT_LEFT_BUTTON && estado == GLUT_DOWN){
-        Bomba novaBomba(coordenadaX, coordenadaY, raioInicialBomba);   
+    if (botao == GLUT_LEFT_BUTTON && estado == GLUT_DOWN) {
+        Bomba novaBomba(coordenadaX, coordenadaY, raioInicialBomba);
         bombas.push_back(novaBomba);
         raioInicialBomba = 0.0;          // Reseta o raio inicial
         glutIdleFunc(aumentarRaioBombas); // Continua a animação
@@ -97,32 +109,40 @@ void cliqueMouse(int botao, int estado, int x, int y){
 void desenhar() {
     glClear(GL_COLOR_BUFFER_BIT);
 
+    glPushMatrix();
+    torre.desenha(larguraJanela - 1);
+    glPopMatrix();
+
+    glPushMatrix();
+    canhao.desenha(mouseX, mouseY, larguraJanela / 2);
+    glPopMatrix();
+
     for (Estrela& estrela : estrelas) {
         estrela.desenha(); // Desenha as estrelas no cenário
     }
 
     glPushMatrix();
-        glTranslated((larguraJanela / 2), (3 * alturaJanela / 4), 0.0); // Translada a lua
-        lua.desenha(); // Desenha a lua
+    glTranslated((larguraJanela / 2), (3 * alturaJanela / 4), 0.0); // Translada a lua
+    lua.desenha(); // Desenha a lua
     glPopMatrix();
 
     for (Bomba& bomba : bombas) {
         glPushMatrix();
-            glTranslatef(bomba.getCentroX(), bomba.getCentroY(), 0.0); // Translada a bomba
-            bomba.desenha(); // Desenha a bomba
+        glTranslatef(bomba.getCentroX(), bomba.getCentroY(), 0.0); // Translada a bomba
+        bomba.desenha(); // Desenha a bomba
         glPopMatrix();
     }
 
     // Desenhe os asteroides com atraso
     glPushMatrix();
-        glTranslated(larguraJanela / 2.0, larguraJanela / 2.0, 0.0);
-        glScalef(250.0, 250.0, 1.0);
-        for (size_t i = 0; i < asteroides.size(); i++) {
-            Asteroide& asteroide = asteroides[i];
-            if (!asteroide.foiAtingido() && tempoAtual >= atrasoAsteroides * (i+1)) {
-                asteroide.desenha();
-            }
+    glTranslated(larguraJanela / 2.0, larguraJanela / 2.0, 0.0);
+    glScalef(250.0, 250.0, 1.0);
+    for (size_t i = 0; i < asteroides.size(); i++) {
+        Asteroide& asteroide = asteroides[i];
+        if (!asteroide.foiAtingido() && tempoAtual >= atrasoAsteroides * (i + 1)) {
+            asteroide.desenha();
         }
+    }
     glPopMatrix();
 
     glutSwapBuffers();
@@ -145,14 +165,14 @@ void atualizar(int valor) {
     // Atualize os asteroides existentes
     for (size_t i = 0; i < asteroides.size(); i++) {
         Asteroide& asteroide = asteroides[i];
-        asteroide.atualiza(0.01f);
+        asteroide.atualiza(0.01f, larguraJanela);
 
         // Verifique se o asteroide saiu completamente da tela (abaixo ou fora das laterais)
-        if (asteroide.getY() < -1.2f || asteroide.getX() > 1.2f || asteroide.getX() < -1.2f) {
-            // Remova o asteroide do vetor
-            asteroides.erase(asteroides.begin() + i);
-            i--; // Atualize o índice após a remoção
-        }
+        //if (asteroide.getY() < -1.2f || asteroide.getX() > 1.2f || asteroide.getX() < -1.2f) {
+        //    // Remova o asteroide do vetor
+        //    asteroides.erase(asteroides.begin() + i);
+        //    i--; // Atualize o índice após a remoção
+        //}
     }
 
     glutPostRedisplay();
@@ -166,7 +186,7 @@ int main(int argc, char** argv) {
     glutInitWindowSize(larguraJanela, alturaJanela); // Define o tamanho da janela
     glutCreateWindow("Missile Command");             // Cria a janela com o título especificado
 
-    for(int i = 0; i < 50; i++){
+    for (int i = 0; i < 50; i++) {
         estrelas.push_back(Estrela(5.0, larguraJanela, alturaJanela)); // Adiciona estrelas ao vetor
     }
 
@@ -175,6 +195,7 @@ int main(int argc, char** argv) {
     glutTimerFunc(10, atualizar, 0);
     glutReshapeFunc(redimensionarJanela); // Define a função de redimensionamento da janela
     glutMouseFunc(cliqueMouse); // Define a função de clique do mouse
+    glutPassiveMotionFunc(mousePos);
 
     srand(time(nullptr)); // Inicializa o gerador de números aleatórios
 

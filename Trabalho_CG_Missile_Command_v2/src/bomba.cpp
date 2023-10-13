@@ -4,10 +4,6 @@
 
 /*********************************************** PRIVATE INTERFACE ***********************************************/
 
-#include "../include/bomba.hpp" // Inclui o cabeçalho para a classe Bomba
-#include <GL/glut.h>            // Inclui a biblioteca GLUT
-#include <cmath>                // Inclui a biblioteca para funções matemáticas
-
 Bomba::Bomba(float x, float y, float raio){
     setRaio(raio);            // Define o raio inicial da bomba
     setPosicao(x, y);         // Define a posição inicial da bomba

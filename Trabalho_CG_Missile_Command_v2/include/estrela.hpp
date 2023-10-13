@@ -1,4 +1,12 @@
 /*********************************************** PUBLIC INTERFACE ***********************************************/
+
+#ifndef ESTRELA_H
+#define ESTRELA_H
+
+#include <GL/glut.h>
+#include <cmath>
+#include <vector>
+
 /**
  * @file estrela.hpp
  * 
@@ -8,14 +16,6 @@
  * Ela possui propriedades como tamanho e vetor de translação, e permite desenhar a estrela no contexto gráfico.
  * 
  */
-
-#ifndef ESTRELA_H
-#define ESTRELA_H
-
-#include <GL/glut.h>
-#include <cmath>
-#include <vector>
-
 class Estrela{
     private:
         float tamanho;                 /**< O tamanho da estrela. */

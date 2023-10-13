@@ -38,21 +38,18 @@ void Asteroide::setAtingido(bool atingido){ // Define se o asteroide foi atingid
     this->atingido = atingido;
 }
 
-float Asteroide::getX() { return this->x; } // Retorna a posição x do asteroide
-float Asteroide::getY() { return this->y; } // Retorna a posição y do asteroide
-bool Asteroide::foiAtingido() { return atingido; } // Retorna se o asteroide foi atingido
+float Asteroide::getX(){ return this->x; } // Retorna a posição x do asteroide
+float Asteroide::getY(){ return this->y; } // Retorna a posição y do asteroide
+bool Asteroide::foiAtingido(){ return atingido; } // Retorna se o asteroide foi atingido
 
-void Asteroide::atualiza(float deltaTempo){ // Atualiza a posição do asteroide com base no tempo
+void Asteroide::atualiza(float deltaTempo, int larguraJanela){
     x += dx * deltaTempo; // Atualize a posição do asteroide aqui
     y += dy * deltaTempo;
-    if (y < -1.0f) { // Verifique se o asteroide saiu da parte de baixo da tela e reinicie dentro dos limites
-        y = 1.0f; // Defina a posição y na parte superior da tela
-        x = (rand() / (float)RAND_MAX) * 2.0f - 1.0f; // Gere uma nova coordenada x aleatória dentro dos limites da tela
-        dy = (rand() / (float)RAND_MAX) * -0.2f; // Defina uma nova velocidade vertical negativa
-    }
 
-    float distanciaAoCentro = std::sqrt((x - *centroCirculoX) * (x - *centroCirculoX) + (y - *centroCirculoY) * (y - *centroCirculoY)); // Verifique se o asteroide atingiu o círculo
-    if (distanciaAoCentro <= *raioCirculo) {
-        atingido = true; // O asteroide atingiu o círculo, defina a variável atingido como true
+    // Verifique se o asteroide está completamente fora da janela de projeção
+    if (y < -3.0f || x < -3.0f || x > 3.0 + larguraJanela) {
+        atingido = true;
     }
 }
+
+/*****************************************************************************************************************/ 

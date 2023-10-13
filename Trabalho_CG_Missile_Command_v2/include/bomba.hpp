@@ -1,4 +1,11 @@
 /*********************************************** PUBLIC INTERFACE ***********************************************/
+
+#ifndef BOMBA_H
+#define BOMBA_H
+
+#include <GL/glut.h>
+#include <cmath>
+
 /**
  * @file bomba.hpp
  * 
@@ -8,13 +15,6 @@
  * Ela possui propriedades como raio e posição, e permite desenhar a bomba no contexto gráfico.
  * 
  */
-
-#ifndef BOMBA_H
-#define BOMBA_H
-
-#include <GL/glut.h>
-#include <cmath>
-
 class Bomba{
     private:
         float raio;      /**< O raio da bomba. */

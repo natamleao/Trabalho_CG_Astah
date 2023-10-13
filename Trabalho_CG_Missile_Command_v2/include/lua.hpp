@@ -1,4 +1,11 @@
 /*********************************************** PUBLIC INTERFACE ***********************************************/
+
+#ifndef LUA_H
+#define LUA_H
+
+#include <GL/glut.h>
+#include <cmath>
+
 /**
  * @file lua.hpp
  * 
@@ -8,13 +15,6 @@
  * Ela possui propriedades como raio e posição, e permite desenhar a lua no contexto gráfico.
  * 
  */
-
-#ifndef LUA_H
-#define LUA_H
-
-#include <GL/glut.h>
-#include <cmath>
-
 class Lua{
     private:
         float raio;      /**< O raio da lua. */
