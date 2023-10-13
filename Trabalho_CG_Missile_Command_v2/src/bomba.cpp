@@ -2,7 +2,7 @@
 #include <GL/glut.h>            // Inclui a biblioteca GLUT
 #include <cmath>                // Inclui a biblioteca para funções matemáticas
 
-/*********************************************** PRIVATE INTERFACE ***********************************************/
+/******************************************************* INTERFACE PRIVADA *******************************************************/
 
 Bomba::Bomba(float x, float y, float raio){
     setRaio(raio);            // Define o raio inicial da bomba
@@ -47,4 +47,4 @@ void Bomba::desenha(){
     glEnd(); // Finaliza o desenho do polígono (círculo)
 }
 
-/*****************************************************************************************************************/
+/*********************************************************************************************************************************/ 

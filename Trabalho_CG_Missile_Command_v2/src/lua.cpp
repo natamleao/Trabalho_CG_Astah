@@ -2,7 +2,7 @@
 #include <GL/glut.h>          // Inclui a biblioteca GLUT
 #include <cmath>              // Inclui a biblioteca para funções matemáticas
 
-/*********************************************** PRIVATE INTERFACE ***********************************************/
+/******************************************************* INTERFACE PRIVADA *******************************************************/
 
 Lua::Lua(float raio){
     setRaio();             // Define o raio inicial da Lua (nota: falta o argumento "raio" aqui)
@@ -39,4 +39,4 @@ void Lua::desenha(){
     glEnd(); // Finaliza o desenho do polígono (círculo)
 }
 
-/*****************************************************************************************************************/
+/*********************************************************************************************************************************/ 

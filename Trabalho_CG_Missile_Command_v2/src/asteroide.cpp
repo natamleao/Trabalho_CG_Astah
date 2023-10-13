@@ -3,13 +3,11 @@
 #include <cstdlib>                  // Inclui a biblioteca para funções padrão
 #include <cmath>                    // Inclui a biblioteca para funções matemáticas
 
-/*********************************************** INTERFACE PRIVADA ***********************************************/
+/******************************************************* INTERFACE PRIVADA *******************************************************/
 
 // Definição do construtor da classe Asteroide
-Asteroide::Asteroide(float x, float y, float raio, float dx, float dy, float* centroCirculo, 
-                     float* centroCirculoY, float* raioCirculo)
-                     : x(x), y(y), raio(raio), dx(dx), dy(dy), atingido(false), centroCirculoY(centroCirculoY),
-                      raioCirculo(raioCirculo) {}
+Asteroide::Asteroide(float x, float y, float raio, float dx, float dy)
+                     : x(x), y(y), raio(raio), dx(dx), dy(dy), atingido(false) {}
 
 void Asteroide::desenha(){
     glPushMatrix(); // Empurra a matriz atual para a pilha
@@ -52,4 +50,4 @@ void Asteroide::atualiza(float deltaTempo, int larguraJanela){
     }
 }
 
-/*****************************************************************************************************************/ 
+/*********************************************************************************************************************************/ 

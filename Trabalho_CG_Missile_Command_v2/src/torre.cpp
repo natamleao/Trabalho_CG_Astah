@@ -1,7 +1,7 @@
 #include "../include/torre.hpp"  // Inclui o cabeçalho da classe Torre
 #include "cmath"
 
-/*********************************************** PRIVATE INTERFACE ***********************************************/
+/******************************************************* INTERFACE PRIVADA *******************************************************/
 
 // Construtor da classe Torre. Inicializa os atributos com os valores passados como argumentos.
 Torre::Torre(double lar, double alt, double mei) : largura(lar), altura(alt), meio(mei) {}
@@ -100,4 +100,4 @@ void Torre::desenha(double tam) {
     desenharMastros(largura, altura);
 }
 
-/*****************************************************************************************************************/
+/*********************************************************************************************************************************/ 

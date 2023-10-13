@@ -1,4 +1,4 @@
-/*********************************************** PUBLIC INTERFACE ***********************************************/
+/******************************************************* INTERFACE PÚBLICA *******************************************************/
 
 #ifndef ESTRELA_H
 #define ESTRELA_H
@@ -41,7 +41,8 @@ class Estrela{
         /**
          * @brief Atualiza as coordenadas da estrela com base nas novas dimensões da janela.
          * 
-         * Este método é responsável por atualizar as coordenadas da estrela quando a janela é redimensionada. Ele gera uma nova posição aleatória para a estrela dentro das novas dimensões da janela.
+         * Este método é responsável por atualizar as coordenadas da estrela quando a janela é redimensionada. 
+         * Ele gera uma nova posição aleatória para a estrela dentro das novas dimensões da janela.
          * 
          * @param novaLargura A nova largura da janela após o redimensionamento.
          * @param novaAltura A nova altura da janela após o redimensionamento.
@@ -51,4 +52,4 @@ class Estrela{
 
 #endif
 
-/****************************************************************************************************************/
+/*********************************************************************************************************************************/ 

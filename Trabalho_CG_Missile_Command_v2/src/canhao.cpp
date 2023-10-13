@@ -1,7 +1,7 @@
 #include "../include/canhao.hpp"  // Inclui o cabeçalho da classe Canhao
 #include <cmath>
 
-/*********************************************** PRIVATE INTERFACE ***********************************************/
+/******************************************************* INTERFACE PRIVADA *******************************************************/
 
 // Construtor da classe Canhao. Inicializa os atributos com os valores passados como argumentos.
 Canhao::Canhao(double largura, double topo, double meio) : largura(largura), topo(topo), meio(meio) {}
@@ -62,4 +62,5 @@ void Canhao::desenha(double x, double y, double meio){
         desenharCano(alvox, alvoy, meio, topo);  // Desenha o cano do canhão
     glPopMatrix();  // Restaura a matriz de transformação anterior
 }
-/*****************************************************************************************************************/
+
+/*********************************************************************************************************************************/ 

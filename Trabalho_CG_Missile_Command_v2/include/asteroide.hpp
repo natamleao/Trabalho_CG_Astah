@@ -1,4 +1,4 @@
-/*********************************************** INTERFACE PRIVADA ***********************************************/
+/******************************************************* INTERFACE PÚBLICA *******************************************************/
 
 #ifndef ASTEROIDE_H
 #define ASTEROIDE_H
@@ -43,7 +43,7 @@ class Asteroide {
          * @param centroCirculoY Ponteiro para a coordenada y do centro do círculo.
          * @param raioCirculo Ponteiro para o raio do círculo.
          */
-        Asteroide(float x, float y, float raio, float dx, float dy, float* centroCirculoX, float* centroCirculoY, float* raioCirculo);
+        Asteroide(float x, float y, float raio, float dx, float dy);
     
         /**
          * @brief Função de desenho do asteroide.
@@ -105,4 +105,4 @@ class Asteroide {
 
 #endif
 
-/*****************************************************************************************************************/ 
+/*********************************************************************************************************************************/ 

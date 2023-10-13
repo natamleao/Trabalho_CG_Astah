@@ -1,7 +1,7 @@
 #include "../include/estrela.hpp" // Inclui o cabeçalho para a classe Estrela
 #include <random>                 // Inclui a biblioteca para geração de números aleatórios
 
-/*********************************************** PRIVATE INTERFACE ***********************************************/
+/******************************************************* INTERFACE PRIVADA *******************************************************/
 
 Estrela::Estrela(float tamanho, int largura, float altura) : tamanho(tamanho){
     std::random_device rd;  // Inicializa o gerador de números aleatórios
@@ -43,4 +43,4 @@ void Estrela::atualizarCoordenadas(int novaLargura, int novaAltura){
     this->vetorTranslacao = {x, y}; // Atualiza o vetor de translação da estrela com as novas coordenadas
 }
 
-/*****************************************************************************************************************/
+/*********************************************************************************************************************************/ 
