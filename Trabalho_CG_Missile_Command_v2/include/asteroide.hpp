@@ -16,7 +16,7 @@
 #include <cstdlib>
 #include <cmath>
 
-class Asteroide{
+class Asteroide {
 private:
     float x;                 /**< A coordenada x do asteroide. */
     float y;                 /**< A coordenada y do asteroide. */

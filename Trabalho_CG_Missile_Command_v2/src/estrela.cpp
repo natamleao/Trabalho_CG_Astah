@@ -33,4 +33,14 @@ void Estrela::desenha(){
     glPopMatrix();
 }
 
+void Estrela::atualizarCoordenadas(int novaLargura, int novaAltura){
+    std::random_device rd;  // Inicializa o gerador de números aleatórios
+    std::mt19937 gen(rd()); // Mersenne Twister 19937 como motor
+    std::uniform_real_distribution<float> x_dist(2.0, static_cast<float>(novaLargura - 2)); // Gera um número aleatório para x no intervalo [2.0, novaLargura - 2.0]
+    float x = x_dist(gen);
+    std::uniform_real_distribution<float> y_dist(static_cast<float>(novaAltura / 2 + 1), static_cast<float>(novaAltura - 2)); // Gera um número aleatório para y no intervalo [novaAltura / 2 + 1, novaAltura - 2.0]
+    float y = y_dist(gen);
+    this->vetorTranslacao = {x, y}; // Atualiza o vetor de translação da estrela com as novas coordenadas
+}
+
 /*****************************************************************************************************************/

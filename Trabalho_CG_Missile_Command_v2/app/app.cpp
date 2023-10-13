@@ -42,6 +42,16 @@ void redimensionarJanela(int novaLargura, int novaAltura){
     larguraJanela = novaLargura;           // Atualiza a largura da janela
     alturaJanela = novaAltura;             // Atualiza a altura da janela
     glViewport(0, 0, novaLargura, novaAltura); // Define a região de visualização
+
+    glMatrixMode(GL_PROJECTION);  // Define a matriz de projeção
+    glLoadIdentity();
+    glOrtho(0, larguraJanela - 1, 0, alturaJanela - 1, -1, 1); // Redefine a projeção ortográfica
+
+    // Atualize as coordenadas das estrelas para refletir as novas dimensões
+    for (Estrela& estrela : estrelas) {
+        estrela.atualizarCoordenadas(novaLargura, novaAltura);
+    }
+
     glutPostRedisplay();               // Solicita a redisplay da cena
 }
 
