@@ -4,7 +4,8 @@
 #include "../include/lua.hpp"       // Inclui o cabeçalho para a classe Lua
 #include "../include/canhao.hpp"    // Inclui o cabeçalho para a classe Canhao
 #include "../include/torre.hpp"     // Inclui o cabeçalho para a classe Torre
-#include "../include/ceu.hpp"
+#include "../include/ceu.hpp"       // Inclui o cabeçalho para a classe Ceu
+#include "../include/predio.hpp"    // Inclui o cabeçalho para a classe Predio
 #include <GL/glut.h>                // Inclui a biblioteca GLUT para gráficos
 #include <iostream>                 // Inclui a biblioteca para entrada/saída
 #include <vector>                   // Inclui a biblioteca para usar vetores
@@ -17,6 +18,8 @@ int alturaJanela = 600;              // Altura inicial da janela
 float raioInicialBomba = 0.0;        // Raio inicial das bombas
 double mouseX = larguraJanela / 2;   // Posição inicial do mouse X
 double mouseY;                       // Posição inicial do mouse Y
+float centroX = larguraJanela / 2;   // Posição X do centro para os predios
+float larguraEntrePredios = 100.0;   // Largura entre prédios
 
 float atrasoAsteroides = 2.0f;          // Atraso inicial (em segundos)
 float tempoAtual = 0.0f;                // Tempo atual
@@ -25,17 +28,23 @@ float tempoDesdeUltimoAsteroide = 0.0f; // Tempo desde o último asteroide
 std::vector<Asteroide> asteroides;         // Vetor para armazenar asteroides
 std::vector<Estrela> estrelas;             // Vetor para armazenar objetos da classe Estrela
 std::vector<Bomba> bombas;                 // Objetos da classe Bomba
-Lua lua;                                   // Objeto da classe Lua
+std::vector<Predio> predios;               // Vetor para armazenar objetos da classe Predio
 Torre torre(30, 175, 0);                   // Objeto da classe Torre com largura, altura e coordenada X do meio
 Canhao canhao(30, 175, larguraJanela / 2); // Objeto da classe Canhao com largura, altura e coordenada X do meio
 Ceu ceu(larguraJanela, alturaJanela);      // Objeto da classe Ceu, fundo da minha tela
+Lua lua;                                   // Objeto da classe Lua
 
+// Função de inicialização
 void inicializacao();
+// Função de redimensionamento da janela
 void redimensionarJanela(int novaLargura, int novaAltura);
+// Função para aumentar o raio das bombas
 void aumentarRaioBombas();
+// Função para capturar a posição do mouse
 void mousePos(int x, int y);
+// Função para tratar o clique do mouse
 void cliqueMouse(int botao, int estado, int x, int y);
-// Função de desenho
+// Função para desenhar
 void desenhar();
 // Função de atualização
 void atualizar(int valor);
@@ -47,9 +56,24 @@ int main(int argc, char** argv){
     glutInitWindowSize(larguraJanela, alturaJanela); // Define o tamanho da janela
     glutCreateWindow("Missile Command");             // Cria a janela com o título especificado
 
+    // Criando as estrelas
     for (int i = 0; i < 100; i++){
         estrelas.push_back(Estrela(5.0, larguraJanela, alturaJanela)); // Adiciona estrelas ao vetor
     }
+
+    // Criando os prédios à esquerda do mundo
+    for (int i = 0; i < 4; i++) {
+        float posX = centroX - (i + 1) * larguraEntrePredios; // Ajuste a largura entre prédios conforme necessário
+        Predio predioEsquerda(70.0, 110.0, posX, larguraJanela, alturaJanela);
+        predios.push_back(predioEsquerda);
+    }
+
+    // Criando os prédios à direita do mundo
+    for (int i = 0; i < 4; i++) {
+        float posX = centroX + (i + 1) * larguraEntrePredios; // Ajuste a largura entre prédios conforme necessário
+        Predio predioDireita(70.0, 110.0, posX, larguraJanela, alturaJanela);
+        predios.push_back(predioDireita);
+    }    
 
     inicializacao(); // Executa a função de inicialização
     glutDisplayFunc(desenhar); // Define a função de desenho
@@ -65,6 +89,7 @@ int main(int argc, char** argv){
     return 0;
 }
 
+// Função de inicialização
 void inicializacao(){
     glClearColor(1.0, 1.0, 1.0, 1.0); // Define a cor de fundo da janela
     glPointSize(10.0); // Define o tamanho dos pontos
@@ -77,6 +102,7 @@ void inicializacao(){
     glLoadIdentity();
 }
 
+// Função de redimensionamento da janela
 void redimensionarJanela(int novaLargura, int novaAltura){
     larguraJanela = novaLargura;           // Atualiza a largura da janela
     alturaJanela = novaAltura;             // Atualiza a altura da janela
@@ -92,9 +118,17 @@ void redimensionarJanela(int novaLargura, int novaAltura){
         estrela.atualizarCoordenadas(novaLargura, novaAltura);
     }
 
+    // Redimensione os prédios para refletir as novas dimensões
+    for (Predio& predio : predios){
+        predio.redimensionarPredio(novaLargura, novaAltura);
+        predio.setAlturaJanela(alturaJanela);
+        predio.setLarguraJanela(larguraJanela);
+    }
+
     glutPostRedisplay();               // Solicita a redisplay da cena
 }
 
+// Função para aumentar o raio das bombas
 void aumentarRaioBombas(){
     const float incrementoRaio = 1.2;  // Valor de incremento para o raio
     const float limiteRaio = 40.0;     // Valor máximo para o raio
@@ -119,12 +153,14 @@ void aumentarRaioBombas(){
     glutPostRedisplay();
 }
 
+// Função para capturar a posição do mouse
 void mousePos(int x, int y){
     mouseX = x;
     mouseY = glutGet(GLUT_WINDOW_HEIGHT) - y; // Inverta a coordenada y
     glutPostRedisplay(); // Redesenha a janela
 }
 
+// Função para tratar o clique do mouse
 void cliqueMouse(int botao, int estado, int x, int y){
     float coordenadaX = x;                // Calcula a coordenada X do clique do mouse
     float coordenadaY = alturaJanela - y; // Calcula a coordenada Y do clique do mouse invertendo a posição Y em relação à altura da janela
@@ -139,7 +175,7 @@ void cliqueMouse(int botao, int estado, int x, int y){
     glutPostRedisplay(); // Solicita a redisplay da cena
 }
 
-// Função de desenho
+// Função para desenhar
 void desenhar(){
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -166,6 +202,13 @@ void desenhar(){
         glPushMatrix();
         glTranslatef(bomba.getCentroX(), bomba.getCentroY(), 0.0); // Translada a bomba
         bomba.desenha(); // Desenha a bomba
+        glPopMatrix();
+    }
+
+    for(Predio& predio : predios){
+        glPushMatrix();
+        glTranslated(predio.getPosicaoX(), predio.getPosicaoY(), 0.0); // Translada o prédio
+        predio.desenha(); // Desenha o prédio
         glPopMatrix();
     }
 
