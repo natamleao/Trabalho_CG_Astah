@@ -3,8 +3,8 @@
 
 /******************************************************* INTERFACE PRIVADA *******************************************************/
 
-// Construtor da classe Torre. Inicializa os atributos com os valores passados como argumentos.
-Torre::Torre(double lar, double alt, double mei) : largura(lar), altura(alt), meio(mei) {}
+// Definição do construtor da classe Torre
+Torre::Torre(double largura, double altura, double meio) : largura(largura), altura(altura), meio(meio) {}
 
 void Torre::desenharPredio(double largura, double altura){
     for (double y = 3; y >= 1; y--) {
@@ -19,14 +19,12 @@ void Torre::desenharPredio(double largura, double altura){
     }
 }
 
-void Torre::desenharCirculo(double raio, double meio_x, double meio_y) {
+void Torre::desenharCirculo(double raio, double meio_x, double meio_y){
     double N = 42;
     if (meio_x < 0) 
         glColor3f(1.0, 0.0, 0.0);  // Define a cor do círculo (vermelho)
     else
         glColor3f(0.0, 0.0, 1.0);  // Define a cor do círculo (azul)
-
-    //glTranslatef(meio_x, meio_y, 0);  // Translação não utilizada
 
     glBegin(GL_TRIANGLE_FAN);  // Inicia o desenho do círculo como um leque de triângulos
         for (double i = N; i > 0; i--) {
@@ -37,8 +35,8 @@ void Torre::desenharCirculo(double raio, double meio_x, double meio_y) {
     glEnd();  // Finaliza o desenho do círculo
 }
 
-void Torre::desenharBandeira(double topo, double lado, double tam) {
-    if (lado < 0) {
+void Torre::desenharBandeira(double topo, double lado, double tam){
+    if(lado < 0){
         glColor3f(1.0, 1.0, 1.0);  // Define a cor da bandeira (branco)
         glBegin(GL_TRIANGLE_FAN);  // Inicia o desenho da bandeira como um leque de triângulos
             glVertex2f(lado, topo);  // Define os vértices da bandeira
@@ -50,7 +48,7 @@ void Torre::desenharBandeira(double topo, double lado, double tam) {
         // Faz o círculo da bandeira do Japão!
         desenharCirculo(tam / 3, lado - (tam / 2), topo - (tam / 2));
     }
-    else {
+    else{
         glColor3f(0.0, 0.8, 0.0);  // Define a cor da bandeira (verde)
         glBegin(GL_TRIANGLE_FAN);  // Inicia o desenho da bandeira como um leque de triângulos
             glVertex2f(lado, topo);  // Define os vértices da bandeira
@@ -72,9 +70,9 @@ void Torre::desenharBandeira(double topo, double lado, double tam) {
     }
 }
 
-void Torre::desenharMastros(double largura, double altura) {
+void Torre::desenharMastros(double largura, double altura){
     double mastro = 20;
-    double tam_bandeira = 10;
+    double tamanhoBandeira = 10;
 
     glBegin(GL_LINES);  // Inicia o desenho de linhas
         glColor3f(0.0, 0.0, 0.0);  // Define a cor das linhas (preto)
@@ -82,7 +80,7 @@ void Torre::desenharMastros(double largura, double altura) {
         glVertex2f(-(largura / (4 - 3)), (altura / 3) + mastro);
     glEnd();
 
-    desenharBandeira((altura / 3) + mastro, -(largura / (4 - 3)), tam_bandeira);
+    desenharBandeira((altura / 3) + mastro, -(largura / (4 - 3)), tamanhoBandeira);
 
     glBegin(GL_LINES);  // Inicia o desenho de linhas
         glColor3f(0.0, 0.0, 0.0);  // Define a cor das linhas (preto)
@@ -90,10 +88,10 @@ void Torre::desenharMastros(double largura, double altura) {
         glVertex2f((largura / (4 - 3)), (altura / 3) + mastro);
     glEnd();
 
-    desenharBandeira((altura / 3) + mastro, (largura / (4 - 3)), tam_bandeira);
+    desenharBandeira((altura / 3) + mastro, (largura / (4 - 3)), tamanhoBandeira);
 }
 
-void Torre::desenha(double tam) {
+void Torre::desenha(double tam){
     this->meio = tam / 2;
     glTranslatef(meio, 0, 0);
     desenharPredio(largura, altura);

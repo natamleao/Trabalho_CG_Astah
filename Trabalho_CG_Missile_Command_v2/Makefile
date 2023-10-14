@@ -16,7 +16,8 @@ libeb: \
 	$(OBJ)/estrela.o \
 	$(OBJ)/lua.o \
 	$(OBJ)/canhao.o \
-	$(OBJ)/torre.o
+	$(OBJ)/torre.o \
+	$(OBJ)/ceu.o
 
 myapps: \
 	cleanapp \

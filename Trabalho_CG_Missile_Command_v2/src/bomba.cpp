@@ -4,11 +4,17 @@
 
 /******************************************************* INTERFACE PRIVADA *******************************************************/
 
+// Definição do construtor da classe Bomba
 Bomba::Bomba(float x, float y, float raio){
     setRaio(raio);            // Define o raio inicial da bomba
     setPosicao(x, y);         // Define a posição inicial da bomba
     this->diminuindo = false; // Inicialmente, a bomba não está diminuindo
 }
+
+float Bomba::getRaio(){return this->raio;}              // Retorna o raio da bomba
+float Bomba::getCentroX(){return this->centroX;}        // Retorna a coordenada x do centro da bomba
+float Bomba::getCentroY(){return this->centroY;}        // Retorna a coordenada y do centro da bomba
+bool Bomba::getDiminuindo() const {return diminuindo;}  // Retorna se a bomba está diminuindo (true ou false)
 
 void Bomba::setPosicao(float x, float y){
     this->centroX = x; // Define a coordenada x do centro da bomba
@@ -23,11 +29,6 @@ void Bomba::setRaio(float raio){
 void Bomba::setDiminuindo(bool value) {
     this->diminuindo = value; // Define se a bomba está diminuindo (true ou false)
 }
-
-float Bomba::getRaio(){return this->raio;}              // Retorna o raio da bomba
-float Bomba::getCentroX(){return this->centroX;}        // Retorna a coordenada x do centro da bomba
-float Bomba::getCentroY(){return this->centroY;}        // Retorna a coordenada y do centro da bomba
-bool Bomba::getDiminuindo() const {return diminuindo;}  // Retorna se a bomba está diminuindo (true ou false)
 
 void Bomba::desenha(){
     glBegin(GL_TRIANGLE_FAN); // Inicia o desenho de um polígono (triângulo)    
@@ -47,4 +48,4 @@ void Bomba::desenha(){
     glEnd(); // Finaliza o desenho do polígono (círculo)
 }
 
-/*********************************************************************************************************************************/ 
+/*********************************************************************************************************************************/

@@ -3,8 +3,19 @@
 
 /******************************************************* INTERFACE PRIVADA *******************************************************/
 
-// Construtor da classe Canhao. Inicializa os atributos com os valores passados como argumentos.
+// Definição do construtor da classe Canhao
 Canhao::Canhao(double largura, double topo, double meio) : largura(largura), topo(topo), meio(meio) {}
+
+double Canhao::calcularAngulo(double mousex, double mousey, double meio, double largura){
+    // Calcula o ângulo com base nas coordenadas do mouse e do meio do canhão
+    double angulo = atan2(mousex - meio, mousey - largura);
+    if (mousey > largura)
+        return -angulo;  // Retorna o ângulo calculado se o mouse estiver acima do largura do canhão
+    else if (mousey < largura && mousex < meio)
+        return -80;  // Retorna um ângulo de -80 graus se o mouse estiver abaixo do largura e à esquerda do canhão
+    else
+        return 80;  // Retorna um ângulo de 80 graus em outros casos
+}
 
 void Canhao::desenharLinha(double alvox, double alvoy, double topo, double meio){
     glColor3f(0.0, 1.0, 1.0);  // Define a cor da linha (ciano)
@@ -12,16 +23,6 @@ void Canhao::desenharLinha(double alvox, double alvoy, double topo, double meio)
         glVertex2f(meio, topo);  // Define o ponto inicial da linha 
         glVertex2f(alvox, alvoy);  // Define o ponto final da linha
     glEnd();  // Finaliza o desenho da linha
-}
-
-double Canhao::calcularAngulo(double mousex, double mousey, double meio, double largura){
-    double angulo = atan2(mousex - meio, mousey - largura);  // Calcula o ângulo com base nas coordenadas do mouse e do meio do canhão
-    if (mousey > largura)
-        return -angulo;  // Retorna o ângulo calculado se o mouse estiver acima do largura do canhão
-    else if (mousey < largura && mousex < meio)
-        return -80;  // Retorna um ângulo de -80 graus se o mouse estiver abaixo do largura e à esquerda do canhão
-    else
-        return 80;  // Retorna um ângulo de 80 graus em outros casos
 }
 
 void Canhao::desenharCano(double mousex, double mousey, double meio, double largura){
@@ -63,4 +64,4 @@ void Canhao::desenha(double x, double y, double meio){
     glPopMatrix();  // Restaura a matriz de transformação anterior
 }
 
-/*********************************************************************************************************************************/ 
+/*********************************************************************************************************************************/

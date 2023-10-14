@@ -20,6 +20,7 @@ class Estrela{
     private:
         float tamanho;                 /**< O tamanho da estrela. */
         std::vector<float> vetorTranslacao; /**< O vetor de translação para posicionar a estrela. */
+
     public:
     
         /**
@@ -34,11 +35,6 @@ class Estrela{
         Estrela(float tamanho, int largura, float altura);
 
         /**
-         * @brief Desenha a estrela no contexto gráfico.
-         */
-        void desenha();
-
-        /**
          * @brief Atualiza as coordenadas da estrela com base nas novas dimensões da janela.
          * 
          * Este método é responsável por atualizar as coordenadas da estrela quando a janela é redimensionada. 
@@ -48,6 +44,11 @@ class Estrela{
          * @param novaAltura A nova altura da janela após o redimensionamento.
          */
         void atualizarCoordenadas(int novaLargura, int novaAltura);
+
+        /**
+         * @brief Desenha a estrela no contexto gráfico.
+         */
+        void desenha();
 };
 
 #endif

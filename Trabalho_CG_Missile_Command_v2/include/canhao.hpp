@@ -17,11 +17,11 @@
  */
 class Canhao {
     private:
-        double alvox;    /**< A coordenada x do canhão. */
-        double alvoy;    /**< A coordenada y do canhão. */
-        double largura;  /**< A largura do canhão. */
-        double topo;     /**< A topo do canhão. */
-        double meio;     /**< A coordenada x do meio do canhão. */
+        double alvox;   /**< A coordenada x do canhão. */
+        double alvoy;   /**< A coordenada y do canhão. */
+        double largura; /**< A largura do canhão. */
+        double topo;    /**< A topo do canhão. */
+        double meio;    /**< A coordenada x do meio do canhão. */
 
     public:
         /**
@@ -36,18 +36,6 @@ class Canhao {
         Canhao(double largura, double topo, double meio);
 
         /**
-         * @brief Desenha uma linha.
-         * 
-         * Desenha uma linha no contexto gráfico.
-         * 
-         * @param alvox A coordenada x inicial da linha.
-         * @param alvoy A coordenada y inicial da linha.
-         * @param topo A topo da linha.
-         * @param meio A coordenada x do meio.
-         */
-        void desenharLinha(double alvox, double alvoy, double topo, double meio);
-
-        /**
          * @brief Calcula o ângulo.
          * 
          * Calcula o ângulo com base nas coordenadas do mouse e do meio do canhão.
@@ -60,6 +48,18 @@ class Canhao {
          * @return O ângulo calculado.
          */
         double calcularAngulo(double mousex, double mousey, double meio, double largura);
+
+        /**
+         * @brief Desenha uma linha.
+         * 
+         * Desenha uma linha no contexto gráfico.
+         * 
+         * @param alvox A coordenada x inicial da linha.
+         * @param alvoy A coordenada y inicial da linha.
+         * @param topo A topo da linha.
+         * @param meio A coordenada x do meio.
+         */
+        void desenharLinha(double alvox, double alvoy, double topo, double meio);
 
         /**
          * @brief Desenha o cano do canhão.

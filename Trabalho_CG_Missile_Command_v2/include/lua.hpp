@@ -20,6 +20,7 @@ class Lua{
         float raio;      /**< O raio da lua. */
         float centroX;   /**< A coordenada X do centro da lua. */
         float centroY;   /**< A coordenada Y do centro da lua. */
+
     public:
     
         /**
@@ -30,6 +31,13 @@ class Lua{
          * @param raio O raio da lua.
          */
         Lua(float raio=50.0);
+
+        /**
+         * @brief Obtém o raio da lua.
+         * 
+         * @return O raio da lua.
+         */
+        float getRaio();
 
         /**
          * @brief Define a posição da lua.
@@ -45,13 +53,6 @@ class Lua{
          * @param raio O raio da lua.
          */
         void setRaio(float raio = 50.0);
-
-        /**
-         * @brief Obtém o raio da lua.
-         * 
-         * @return O raio da lua.
-         */
-        float getRaio();
 
         /**
          * @brief Desenha a lua no contexto gráfico.

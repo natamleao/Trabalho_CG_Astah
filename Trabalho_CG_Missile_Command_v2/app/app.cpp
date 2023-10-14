@@ -4,6 +4,7 @@
 #include "../include/lua.hpp"       // Inclui o cabeçalho para a classe Lua
 #include "../include/canhao.hpp"    // Inclui o cabeçalho para a classe Canhao
 #include "../include/torre.hpp"     // Inclui o cabeçalho para a classe Torre
+#include "../include/ceu.hpp"
 #include <GL/glut.h>                // Inclui a biblioteca GLUT para gráficos
 #include <iostream>                 // Inclui a biblioteca para entrada/saída
 #include <vector>                   // Inclui a biblioteca para usar vetores
@@ -21,12 +22,13 @@ float atrasoAsteroides = 2.0f;          // Atraso inicial (em segundos)
 float tempoAtual = 0.0f;                // Tempo atual
 float tempoDesdeUltimoAsteroide = 0.0f; // Tempo desde o último asteroide
 
-std::vector<Asteroide> asteroides;  // Vetor para armazenar asteroides
-std::vector<Estrela> estrelas;      // Vetor para armazenar objetos da classe Estrela
-std::vector<Bomba> bombas;          // Objetos da classe Bomba
-Lua lua;                            // Objeto da classe Lua
-Torre torre(30, 175, 0);            // Objeto da classe Torre com largura, altura e coordenada X do meio
+std::vector<Asteroide> asteroides;         // Vetor para armazenar asteroides
+std::vector<Estrela> estrelas;             // Vetor para armazenar objetos da classe Estrela
+std::vector<Bomba> bombas;                 // Objetos da classe Bomba
+Lua lua;                                   // Objeto da classe Lua
+Torre torre(30, 175, 0);                   // Objeto da classe Torre com largura, altura e coordenada X do meio
 Canhao canhao(30, 175, larguraJanela / 2); // Objeto da classe Canhao com largura, altura e coordenada X do meio
+Ceu ceu(larguraJanela, alturaJanela);      // Objeto da classe Ceu, fundo da minha tela
 
 void inicializacao();
 void redimensionarJanela(int novaLargura, int novaAltura);
@@ -64,7 +66,7 @@ int main(int argc, char** argv){
 }
 
 void inicializacao(){
-    glClearColor(25.0 / 255, 25.0 / 255, 112.0 / 255, 1.0); // Define a cor de fundo da janela
+    glClearColor(1.0, 1.0, 1.0, 1.0); // Define a cor de fundo da janela
     glPointSize(10.0); // Define o tamanho dos pontos
     glLineWidth(3.0);  // Define a largura da linha
 
@@ -80,6 +82,7 @@ void redimensionarJanela(int novaLargura, int novaAltura){
     alturaJanela = novaAltura;             // Atualiza a altura da janela
     glViewport(0, 0, novaLargura, novaAltura); // Define a região de visualização
 
+    ceu.update_ceu(larguraJanela, alturaJanela);
     glMatrixMode(GL_PROJECTION);  // Define a matriz de projeção
     glLoadIdentity();
     glOrtho(0, larguraJanela - 1, 0, alturaJanela - 1, -1, 1); // Redefine a projeção ortográfica
@@ -140,6 +143,8 @@ void cliqueMouse(int botao, int estado, int x, int y){
 void desenhar(){
     glClear(GL_COLOR_BUFFER_BIT);
 
+    ceu.desenha();
+
     glPushMatrix();
     torre.desenha(larguraJanela - 1);
     glPopMatrix();
@@ -170,7 +175,7 @@ void desenhar(){
     glScalef(250.0, 250.0, 1.0);
     for (size_t i = 0; i < asteroides.size(); i++) {
         Asteroide& asteroide = asteroides[i];
-        if (!asteroide.foiAtingido() && tempoAtual >= atrasoAsteroides * (i + 1)) {
+        if (!asteroide.getAtingido() && tempoAtual >= atrasoAsteroides * (i + 1)) {
             asteroide.desenha();
         }
     }
@@ -199,7 +204,7 @@ void atualizar(int valor){
         asteroide.atualiza(0.01f, larguraJanela);
 
         // Verifique se o asteroide saiu completamente da tela (abaixo ou fora das laterais)
-        if (asteroide.foiAtingido()){
+        if (asteroide.getAtingido()){
             // Remova o asteroide do vetor
             asteroides.erase(asteroides.begin() + i);
             i--; // Atualize o índice após a remoção

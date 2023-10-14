@@ -4,10 +4,13 @@
 
 /******************************************************* INTERFACE PRIVADA *******************************************************/
 
+// Definição do construtor da classe Lua
 Lua::Lua(float raio){
     setRaio();             // Define o raio inicial da Lua (nota: falta o argumento "raio" aqui)
     setPosicao(0.0, 0.0);  // Define a posição inicial da Lua
 }
+
+float Lua::getRaio(){return this->raio;} // Retorna o raio da Lua
 
 void Lua::setPosicao(float x, float y){
     this->centroX = x;     // Define a coordenada x do centro da Lua
@@ -18,8 +21,6 @@ void Lua::setRaio(float raio){
     if (raio >= 5.0)        // Garante que o raio seja sempre não negativo e maior ou igual a 5.0
         this->raio = raio;  // Define o raio da Lua
 }
-
-float Lua::getRaio(){return this->raio;} // Retorna o raio da Lua
 
 void Lua::desenha(){
     glBegin(GL_TRIANGLE_FAN); // Inicia o desenho de um polígono (triângulo)   

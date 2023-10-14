@@ -27,11 +27,11 @@ class Torre{
          * 
          * Cria um objeto Torre com dimensões específicas.
          * 
-         * @param lar A largura da torre.
-         * @param alt A altura da torre.
-         * @param mei A coordenada x do meio da torre.
+         * @param largura A largura da torre.
+         * @param altura A altura da torre.
+         * @param meio A coordenada x do meio da torre.
          */
-        Torre(double lar, double alt, double mei);
+        Torre(double largura, double altura, double meio);
 
         /**
          * @brief Função de desenho do prédio da torre.
