@@ -72,7 +72,7 @@ class Ceu{
          * Desenha o cenário do céu no contexto gráfico.
          */
         void desenha();
-    };
+};
 
 #endif
 

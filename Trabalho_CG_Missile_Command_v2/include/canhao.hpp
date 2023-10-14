@@ -90,7 +90,7 @@ class Canhao {
          * @param meio A coordenada x do meio do canhão.
          */
         void desenha(double x, double y, double meio);
-    };
+};
 
 #endif
 

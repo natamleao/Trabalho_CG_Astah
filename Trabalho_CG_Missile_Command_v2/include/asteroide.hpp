@@ -95,7 +95,7 @@ class Asteroide {
          * Desenha o asteroide na posição atual.
          */
         void desenha();
-    };
+};
 
 #endif
 

@@ -83,7 +83,7 @@ class Torre{
          * @param tamanho O tamanho da torre a ser desenhada.
          */
         void desenha(double tamanho);
-    };
+};
 
 #endif
 

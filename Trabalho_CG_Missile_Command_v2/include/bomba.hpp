@@ -85,7 +85,7 @@ class Bomba{
          * @brief Desenha a bomba no contexto gráfico.
          */
         void desenha();
-    };
+};
 
 #endif
 

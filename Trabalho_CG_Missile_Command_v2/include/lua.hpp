@@ -58,7 +58,7 @@ class Lua{
          * @brief Desenha a lua no contexto gráfico.
          */
         void desenha();
-    };
+};
 
 #endif
 
