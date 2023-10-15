@@ -3,8 +3,8 @@
 #ifndef PREDIO_H
 #define PREDIO_H
 
-#include <GL/glut.h>
 #include "../include/asteroide.hpp"
+#include <GL/glut.h>
 #include <vector>
 #include <tuple>
 
