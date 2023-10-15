@@ -1,5 +1,5 @@
-#include "../include/predio.hpp"
-#include "../include/asteroide.hpp"
+#include "../include/predio.hpp"     // Inclui o cabeçalho da classe Predio
+#include "../include/asteroide.hpp"  // Inclui o cabeçalho da classe Asteroide
 #include <GL/glut.h>
 
 /******************************************************* INTERFACE PRIVADA *******************************************************/
