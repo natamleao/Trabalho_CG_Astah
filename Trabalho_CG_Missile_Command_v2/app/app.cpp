@@ -55,7 +55,7 @@ int main(int argc, char** argv){
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);     // Define o modo de exibição
     glutInitWindowPosition(0, 0);                    // Define a posição inicial da janela
     glutInitWindowSize(larguraJanela, alturaJanela); // Define o tamanho da janela
-    glutCreateWindow("Missile Command");             // Cria a janela com o título especificado
+    glutCreateWindow("Astah");             // Cria a janela com o título especificado
 
     // Criando as estrelas
     for (int i = 0; i < 100; i++){

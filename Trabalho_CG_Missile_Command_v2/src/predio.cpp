@@ -80,32 +80,35 @@ bool Predio::verificaColisaoComAsteroides(std::vector<Asteroide>& asteroides){
 }
 
 void Predio::desenha(){
-    glBegin(GL_TRIANGLE_FAN); 
-        if(atingido)
-            glColor3f(0.0, 0.0, 0.0); // Cor preta se o prédio foi atingido 
+    glBegin(GL_TRIANGLE_FAN);
+        if (atingido)
+            glColor3f(0.0, 0.0, 0.4); // Cor azul escuro se o prédio foi atingido
         else
             glColor3fv(corpredio);
         
         glVertex2f(-largura / 2, 0.0); // Canto inferior esquerdo
-        glVertex2f(largura / 2, 0.0);  // Canto inferior direito
+        glVertex2f(largura / 2, 0.0); // Canto inferior direito
         glVertex2f(largura / 2, altura); // Canto superior direito
         glVertex2f(-largura / 2, altura); // Canto superior esquerdo
-    glEnd();
+        glEnd();
 
-    for (const auto& janelaInfo : janelas){ // Janela informações x, y, largura e altura
-        float x = std::get<0>(janelaInfo);
-        float y = std::get<1>(janelaInfo);
-        float largura = std::get<2>(janelaInfo);
-        float altura = std::get<3>(janelaInfo);
+        for (const auto& janelaInfo : janelas){ // Janela informações x, y, largura e altura
+            float x = std::get<0>(janelaInfo);
+            float y = std::get<1>(janelaInfo);
+            float largura = std::get<2>(janelaInfo);
+            float altura = std::get<3>(janelaInfo);
 
-        glBegin(GL_TRIANGLE_FAN); // Desenha as janelas
-            glColor3fv(corjanela);
+            glBegin(GL_TRIANGLE_FAN); // Desenha as janelas
+            if (atingido)
+                glColor3f(0.0, 0.0, 0.4); // Cor azul escuro se o prédio foi atingido
+            else 
+                glColor3fv(corjanela);
+
             glVertex2f(x, y);
             glVertex2f(x + largura, y);
             glVertex2f(x + largura, y + altura);
             glVertex2f(x, y + altura);
-        glEnd();
-    }
+            glEnd();
+        }
 }
-
 /*********************************************************************************************************************************/ 
