@@ -12,7 +12,7 @@ Asteroide::Asteroide(float x, float y, float raio, float dx, float dy)
 // Método para desenhar o asteroide no contexto gráfico
 void Asteroide::desenha() {
     glPushMatrix();
-    glColor3f(0.0, 0.0, 0.0);
+    glColor3f(1.0, 0.5, 0.0);
     glTranslatef(x, y, 0.0f);
     glScaled(raio, raio, 1.0);
     glBegin(GL_TRIANGLE_FAN);
