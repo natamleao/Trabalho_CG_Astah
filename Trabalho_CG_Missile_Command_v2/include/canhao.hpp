@@ -15,7 +15,7 @@
  * Ele possui propriedades como posição e dimensões, e permite desenhar o canhão no contexto gráfico.
  * 
  */
-class Canhao {
+class Canhao{
     private:
         double alvox;   /**< A coordenada x do canhão. */
         double alvoy;   /**< A coordenada y do canhão. */
