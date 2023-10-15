@@ -26,7 +26,7 @@ void Bomba::setRaio(float raio){
         this->raio = raio; // Define o raio da bomba
 }
 
-void Bomba::setDiminuindo(bool value) {
+void Bomba::setDiminuindo(bool value){
     this->diminuindo = value; // Define se a bomba está diminuindo (true ou false)
 }
 

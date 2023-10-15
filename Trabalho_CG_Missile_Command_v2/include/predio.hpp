@@ -3,6 +3,8 @@
 #ifndef PREDIO_H
 #define PREDIO_H
 
+#include <GL/glut.h>
+#include "../include/asteroide.hpp"
 #include <vector>
 #include <tuple>
 
@@ -23,6 +25,7 @@ class Predio{
         float posY;          /**< Posição y do prédio. */
         float alturaJanela;  /**< Altura original da janela de projeção. */
         float larguraJanela; /**< Largura original da janela de projeção. */
+        bool atingido;       /**< Marcação para ver se um prédio foi atingido*/
         std::vector<std::tuple<float, float, float, float>> janelas; /**< Vetor de janelas no prédio. */
 
     public:
@@ -84,6 +87,17 @@ class Predio{
          * @param novaAlturaJanela Nova altura da janela de projeção.
          */
         void redimensionarPredio(float novaLarguraJanela, float novaAlturaJanela);
+
+        // Adicione esta função para verificar colisões com asteroides
+        bool verificaColisaoComAsteroides(std::vector<Asteroide>& asteroides);
+
+        void setAtingido(bool atingido);
+
+        float getLargura(); 
+
+        float getAltura(); 
+
+        bool getAtingido();
 
         /**
          * @brief Função de desenho do prédio.

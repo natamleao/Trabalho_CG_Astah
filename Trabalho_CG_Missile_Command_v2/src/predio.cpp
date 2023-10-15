@@ -1,4 +1,5 @@
 #include "../include/predio.hpp"
+#include "../include/asteroide.hpp"
 #include <GL/glut.h>
 
 /******************************************************* INTERFACE PRIVADA *******************************************************/
@@ -14,6 +15,7 @@ Predio::Predio(float largura, float altura, float posicaoX, float larguraJanela,
     this->posY = 0.0; // Inicializa a coordenada Y
     this->larguraJanela = larguraJanela;
     this->alturaJanela = alturaJanela;
+    this->atingido = false;
     adicionarJanela(10.0, 10.0, 10.0, 20.0); // Adicione as minhas janelas diretamente no meu construtor de predio
     adicionarJanela(-20.0, 10.0, 10.0, 20.0);
     adicionarJanela(10.0, 40.0, 10.0, 20.0);
@@ -31,6 +33,10 @@ void Predio::setAlturaJanela(float AlturaJanela){
 
 void Predio::setLarguraJanela(float larguraJanela){
     this->larguraJanela = larguraJanela; // Define a nova largura da janela
+}
+
+void Predio::setAtingido(bool atingido){
+    this->atingido = atingido;
 }
 
 void Predio::adicionarJanela(float x, float y, float largura, float altura) {
@@ -60,9 +66,26 @@ void Predio::redimensionarPredio(float novaLarguraJanela, float novaAlturaJanela
     }
 }
 
+bool Predio::verificaColisaoComAsteroides(std::vector<Asteroide>& asteroides){
+    if(!atingido){
+        for (Asteroide& asteroide : asteroides) {
+            // Verifica se o asteroide está dentro do retângulo do prédio
+            if (asteroide.getCoordenadaX() >= posX && asteroide.getCoordenadaX() <= (posX + largura) && 
+                asteroide.getCoordenadaY() >= posY && asteroide.getCoordenadaY() <= (posY + altura)) {
+                return true;
+            }
+    }
+    }
+    return false; // Não houve colisão detectada
+}
+
 void Predio::desenha(){
     glBegin(GL_TRIANGLE_FAN); 
-        glColor3fv(corpredio);
+        if(atingido)
+            glColor3f(0.0, 0.0, 0.0); // Cor preta se o prédio foi atingido 
+        else
+            glColor3fv(corpredio);
+        
         glVertex2f(-largura / 2, 0.0); // Canto inferior esquerdo
         glVertex2f(largura / 2, 0.0);  // Canto inferior direito
         glVertex2f(largura / 2, altura); // Canto superior direito

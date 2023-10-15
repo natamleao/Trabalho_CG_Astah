@@ -8,48 +8,73 @@
 #include <cmath>
 
 /**
- * @file asteroide.hpp
+ * @file asteroide.h
  * 
- * @brief Declaração da classe Asteroide, que representa um asteroide em um jogo.
+ * @brief Declaração da classe Asteroide, que representa um asteroide gráfico.
  * 
- * Esta classe define um asteroide que pode ser desenhado em uma janela OpenGL.
- * Ele possui propriedades como posição, raio e velocidade, e permite desenhar o asteroide no contexto gráfico.
- * 
+ * Esta classe define um asteroide gráfico que pode ser desenhado em uma janela OpenGL.
+ * Ela possui propriedades como raio, posição e permite desenhar o asteroide no contexto gráfico.
  */
-class Asteroide {
+class Asteroide{
     private:
-        float x;       /**< A coordenada x do asteroide. */
-        float y;       /**< A coordenada y do asteroide. */
-        float raio;    /**< O raio do asteroide. */
-        float dx;      /**< A velocidade horizontal do asteroide. */
-        float dy;      /**< A velocidade vertical do asteroide. */
-        bool atingido; /**< Indica se o asteroide foi atingido. */
+        float x;        /**< A coordenada X do centro do asteroide. */
+        float y;        /**< A coordenada Y do centro do asteroide. */
+        float raio;     /**< O raio do asteroide. */
+        float dx;       /**< A velocidade horizontal do asteroide. */
+        float dy;       /**< A velocidade vertical do asteroide. */
+        bool atingido;  /**< Flag que determina se o asteroide foi atingido. */
     
     public:
         /**
          * @brief Construtor da classe Asteroide.
          * 
-         * Cria um objeto Asteroide com parâmetros específicos.
+         * Cria um objeto Asteroide com propriedades iniciais.
          * 
-         * @param x Posição x inicial do asteroide.
-         * @param y Posição y inicial do asteroide.
-         * @param raio Raio do asteroide.
-         * @param dx Velocidade horizontal do asteroide.
-         * @param dy Velocidade vertical do asteroide.
+         * @param x A coordenada X do centro do asteroide.
+         * @param y A coordenada Y do centro do asteroide.
+         * @param raio O raio do asteroide.
+         * @param dx A velocidade horizontal do asteroide.
+         * @param dy A velocidade vertical do asteroide.
          */
         Asteroide(float x, float y, float raio, float dx, float dy);
-
+    
         /**
-         * @brief Obtém a posição x do asteroide.
+         * @brief Desenha o asteroide no contexto gráfico.
+         */
+        void desenha();
+    
+        /**
+         * @brief Define a coordenada X do centro do asteroide.
          * 
-         * @return A posição x do asteroide.
+         * @param x A coordenada X do centro do asteroide.
+         */
+        void setX(float x);
+    
+        /**
+         * @brief Define a coordenada Y do centro do asteroide.
+         * 
+         * @param y A coordenada Y do centro do asteroide.
+         */
+        void setY(float y);
+    
+        /**
+         * @brief Define se o asteroide foi atingido.
+         * 
+         * @param atingido Um valor booleano que indica se o asteroide foi atingido.
+         */
+        void setAtingido(bool atingido);
+    
+        /**
+         * @brief Obtém a coordenada X do centro do asteroide.
+         * 
+         * @return A coordenada X do centro do asteroide.
          */
         float getCoordenadaX();
     
         /**
-         * @brief Obtém a posição y do asteroide.
+         * @brief Obtém a coordenada Y do centro do asteroide.
          * 
-         * @return A posição y do asteroide.
+         * @return A coordenada Y do centro do asteroide.
          */
         float getCoordenadaY();
     
@@ -61,40 +86,19 @@ class Asteroide {
         bool getAtingido();
     
         /**
-         * @brief Define a posição x do asteroide.
+         * @brief Obtém o raio do asteroide.
          * 
-         * @param x Nova posição x do asteroide.
+         * @return O raio do asteroide.
          */
-        void setCoordenadaX(float x);
+        float getRaio();
     
         /**
-         * @brief Define a posição y do asteroide.
+         * @brief Atualiza a posição do asteroide com base no tempo e na largura da janela.
          * 
-         * @param y Nova posição y do asteroide.
+         * @param deltaTempo O intervalo de tempo desde a última atualização.
+         * @param larguraJanela A largura da janela em que o asteroide está sendo desenhado.
          */
-        void setCoordenadaY(float y);
-    
-        /**
-         * @brief Define se o asteroide foi atingido.
-         * 
-         * @param atingido true se o asteroide foi atingido, false caso contrário.
-         */
-        void setAtingido(bool atingido);
-    
-        /**
-         * @brief Atualiza a posição do asteroide com base no tempo.
-         * 
-         * @param deltaTempo Intervalo de tempo desde a última atualização.
-         * @param larguraJanela Largura da janela de projeção.
-         */
-        void atualiza(float deltaTempo, int larguraJanela) ;
-
-        /**
-         * @brief Função de desenho do asteroide.
-         * 
-         * Desenha o asteroide na posição atual.
-         */
-        void desenha();
+        void atualiza(float deltaTempo, int larguraJanela);
 };
 
 #endif

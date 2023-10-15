@@ -3,6 +3,8 @@
 #ifndef CEU_H
 #define CEU_H
 
+#include <GL/glut.h>
+
 /**
  * @file ceu.hpp
  * 
