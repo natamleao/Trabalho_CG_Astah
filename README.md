@@ -1,6 +1,6 @@
 <div align="justify">
 
-# Trabalho de Computação Gráfica: Jogo Missile Command em C++
+# Trabalho de Computação Gráfica: Jogo Missile Command (Astah) em C++
 
 </div>
 
