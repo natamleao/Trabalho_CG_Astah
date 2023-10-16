@@ -20,7 +20,7 @@ O jogo utiliza a biblioteca OpenGL para renderizar os gráficos, proporcionando 
 
 </div>
 
-![Cena do Jogo](https://i.imgur.com/44Fx5p2.jpg)
+![Cena do Jogo](https://i.imgur.com/Wz093QM.png)
 
 <div align="justify">
 
