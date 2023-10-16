@@ -1,6 +1,6 @@
 # Trabalho de Computação Gráfica: Jogo Missile Command em C++
 
-![Astah](./images/Astah.jpeg)
+[Astah](https://i.imgur.com/RX5kDms.jpg)
 
 <div align="justify">
 
