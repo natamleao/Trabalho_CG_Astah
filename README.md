@@ -31,11 +31,15 @@ O jogo utiliza a biblioteca OpenGL para renderizar os gráficos, proporcionando 
 > - Pressione `Ctrl + C` no terminal para encerrar o jogo.
 
 > [!Note]
+<<<<<<< HEAD
 > Este projeto é uma implementação simples do jogo Missile Command em C++ e utiliza a biblioteca OpenGL para gráficos. Ele serve como uma oportunidade de aprendizado para  entender os conceitos de programação em C++ e computação gráfica com OpenGL.
+=======
+> Este projeto é uma implementação simples do jogo Missile Command em C++ e utiliza a biblioteca OpenGL para gráficos. Ele serve como uma oportunidade de aprendizado para > entender os conceitos de programação em C++ e computação gráfica com OpenGL.
+>>>>>>> CG_Aprimoramentos
 
 * **Autores:** Billy Grahan, Natam e Victor Wesley
 * **Instituição:** Universidade Federal do Ceará (UFC) - Campus Russas
 * **Disciplina:** Computação Gráfica
-* **Data de Conclusão:** DD/MM/AAAA
+* **Data de Conclusão:** 15/10/2023
 
 </div>
