@@ -1,5 +1,7 @@
 # Trabalho de Computação Gráfica: Jogo Missile Command em C++
 
+![Astah](./images/Astah.jpeg)
+
 <div align="justify">
 
 Este projeto é um exemplo de jogo Missile Command desenvolvido como parte de um trabalho acadêmico na disciplina de Computação Gráfica. O jogo permite que os jogadores defendam sua cidade contra mísseis inimigos.
