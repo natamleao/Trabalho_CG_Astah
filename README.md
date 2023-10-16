@@ -1,4 +1,8 @@
+<div align="justify">
+
 # Trabalho de Computação Gráfica: Jogo Missile Command em C++
+
+</div>
 
 ![Astah](https://i.imgur.com/RX5kDms.jpg)
 
