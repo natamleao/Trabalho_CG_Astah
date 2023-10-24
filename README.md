@@ -8,7 +8,7 @@
 
 <div align="justify">
 
-Este projeto é um exemplo de jogo Missile Command desenvolvido como parte de um trabalho acadêmico na disciplina de Computação Gráfica. O jogo permite que os jogadores defendam sua cidade contra mísseis inimigos.
+Este projeto é um exemplo de jogo Missile Command em 2D desenvolvido como parte de um trabalho acadêmico na disciplina de Computação Gráfica. O jogo permite que os jogadores defendam sua cidade contra mísseis inimigos.
 
 ## Funcionalidades Principais
 
@@ -43,8 +43,7 @@ O jogo utiliza a biblioteca OpenGL para renderizar os gráficos, proporcionando 
 > - Pressione `Ctrl + C` no terminal para encerrar o jogo.
 
 > [!Note]
-> Este projeto é uma implementação simples do jogo Missile Command em C++ e utiliza a biblioteca OpenGL para gráficos. Ele serve como uma oportunidade de aprendizado para  entender os conceitos de programação em C++ e computação gráfica com OpenGL.
-> Este projeto é uma implementação simples do jogo Missile Command em C++ e utiliza a biblioteca OpenGL para gráficos. Ele serve como uma oportunidade de aprendizado para > entender os conceitos de programação em C++ e computação gráfica com OpenGL.
+> Este projeto é uma implementação simples do jogo Missile Command em 2D implementado em C++ e utiliza a biblioteca OpenGL para gráficos. Ele serve como uma oportunidade de aprendizado para  entender os conceitos de programação em C++ e computação gráfica com OpenGL.
 
 * **Autores:** Billy Grahan, Natam e Victor Wesley
 * **Instituição:** Universidade Federal do Ceará (UFC) - Campus Russas
