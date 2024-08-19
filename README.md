@@ -22,8 +22,6 @@ O jogo utiliza a biblioteca OpenGL para renderizar os gráficos, proporcionando 
 
 ![Cena do Jogo](https://i.imgur.com/Wz093QM.png)
 
-<div align="justify">
-
 > [!WARNING]
 > Este jogo é apenas uma demonstração acadêmica e não deve ser utilizado para fins comerciais. Os gráficos e a jogabilidade são simplificados e não representam um produto final.
 
@@ -37,17 +35,15 @@ O jogo utiliza a biblioteca OpenGL para renderizar os gráficos, proporcionando 
 > 6. No jogo, você deve defender sua cidade dos mísseis inimigos. Use o mouse para mirar e clique com o botão direito para disparar mísseis contra os inimigos.
 > 7. Use `make clean` para apagar todos os arquivos compilados.
 > 8. Para encerrar o jogo, simplesmente feche a janela do jogo ou pressione `Ctrl + C` no terminal.
->
+
 > ## Controles 
 > - Use o mouse para mirar e clique o botão direito para disparar mísseis.
 > - Pressione `Ctrl + C` no terminal para encerrar o jogo.
 
-> [!Note]
-> Este projeto é uma implementação simples do jogo Missile Command em 2D implementado em C++ e utiliza a biblioteca OpenGL para gráficos. Ele serve como uma oportunidade de aprendizado para  entender os conceitos de programação em C++ e computação gráfica com OpenGL.
+> [!NOTE]
+> Este projeto é uma implementação simples do jogo Missile Command em 2D implementado em C++ e utiliza a biblioteca OpenGL para gráficos. Ele serve como uma oportunidade de aprendizado para entender os conceitos de programação em C++ e computação gráfica com OpenGL.
 
 * **Autores:** Billy Grahan, Natam e Victor Wesley
 * **Instituição:** Universidade Federal do Ceará (UFC) - Campus Russas
 * **Disciplina:** Computação Gráfica
 * **Data de Conclusão:** 15/10/2023
-
-</div>
